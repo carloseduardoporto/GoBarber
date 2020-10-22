@@ -1,10 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+
+import AppError from '../errors/AppError';
 
 import authConfig from '../config/auth';
 
-interface tokenPayLoad {
+interface TokenPayload {
   iat: number;
   exp: number;
   sub: string;
@@ -15,33 +16,25 @@ export default function ensureAuthenticated(
   response: Response,
   next: NextFunction,
 ): void {
-  // validação do token jwt
-
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new Error('JWT token is missing.');
+    throw new AppError('JWT token is missing', 401);
   }
 
-  // Bearer haushifaojsijdsa
-
-  const [, token] = authHeader.split(' '); // separa o Beader do segredo
+  const [, token] = authHeader.split(' ');
 
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub } = decoded as tokenPayLoad; // forma de forçar tipagem no typescript
+    const { sub } = decoded as TokenPayload;
 
-    /**
-     * Como o request.user  não tem tipagem, a manha é criar uma pasta arrobaTypes, e adicionar uma tipagem para biblioteca.
-     * com esse user, vamos ter
-     */
     request.user = {
       id: sub,
     };
 
     return next();
   } catch {
-    throw new Error('Invalid JWT token');
+    throw new AppError('Invalid JWT token', 401);
   }
 }
