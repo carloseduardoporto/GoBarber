@@ -1,0 +1,6 @@
+Rotas e controllers
+Repositorios de tokens (typeORM)
+Criar migration de tokens
+Provider de envio de email (DEV)
+Registrar providers no container ( injeção de dependência)
+testar tudo
