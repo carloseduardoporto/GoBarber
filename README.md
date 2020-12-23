@@ -25,15 +25,12 @@
 
 - O usuário deve poder atualizar seu nome, email e senha;
 
-**RNF**
-
-
 
 **RN**
 
-- O usuário não pode alterar seu email para um email já utilizado;
-- Para atualizar sua senha, o usuário deve informar a senha antiga;
-- Para atua lizar sua senha, o usuário precisa confirmar a nova senha;
+- O usuário não pode alterar seu email para um email já utilizado;    OK
+- Para atualizar sua senha, o usuário deve informar a senha antiga;  OK
+- Para atualizar sua senha, o usuário precisa confirmar a nova senha;
 
 # Painel do prestador
 
