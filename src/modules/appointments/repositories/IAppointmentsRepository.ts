@@ -1,5 +1,7 @@
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import Appointment from '../infra/typeorm/entities/Appointment';
+import IFindAllInMonthFromProviderDTO from '../dtos/IFindAllInMonthFromProviderDTO';
+import IFindAllInDayFromProviderDTO from '../dtos/IFindAllInDayFromProviderDTO';
 
 // começou a letra I, então, sua responsabilidade vai ser uma interface;
 // essa interface vai operar em conformidade com o SOLID, no caso, o L
@@ -10,4 +12,10 @@ export default interface IAppointmentsRepository {
   create(data: ICreateAppointmentDTO): Promise<Appointment>; // não precisor desustruturar e colcar { provider_id, date}, aqui não vai ser usado nada
 
   findByDate(date: Date): Promise<Appointment | undefined>;
+  findAllInMonthFromProvider(
+    data: IFindAllInMonthFromProviderDTO,
+  ): Promise<Appointment[]>;
+  findAllInDayFromProvider(
+    data: IFindAllInDayFromProviderDTO,
+  ): Promise<Appointment[]>;
 }
