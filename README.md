@@ -67,7 +67,6 @@
 
 - Os agendamentos devem estar disponíveis entre 8h às 18h (Primeiro às 8h, último às 17h);
 
-
 - Cada agendamento deve durar 1h exatamente;
 - O usuário não pode agendar em um horário já ocupado;
 - O usuário não pode agendar um horário que já passou;
